@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using PerfectGWLag.Models.GWLag;
+using RiverSystem;
 using RiverSystem.Catchments.Models.CatchmentModels;
 using RiverSystem.Catchments.Models.ContaminantGenerationModels;
 using TIME.Core;
@@ -17,7 +18,7 @@ namespace CatchmentSalinity
         [Parameter,Aka("Name of Salt Constituent")]
         public string ConstituentName { get; set; }
 
-        [Output, Aka("Salt Export to Link"),CalculationUnits(CommonUnits.kilograms)]
+        [Output, Aka("Salt Export from Groundwater"),CalculationUnits(CommonUnits.kilograms)]
         public double GroundwaterSaltExport { get; private set; }
 
         [Output, CalculationUnits(CommonUnits.kilograms)]
@@ -39,6 +40,7 @@ namespace CatchmentSalinity
         [State, CalculationUnits(CommonUnits.kilograms)]
         public double SaltStore { get; set; }
 
+        [Input]
         public double SurfaceWaterSaltExport { get; set; }
 
         //[State]
@@ -224,7 +226,7 @@ namespace CatchmentSalinity
         {
             GroundwaterSaltExport = GroundwaterFlow*ConcentrationGroundwater; // Eq 11
             SaltStore = SaltStore + GroundwaterSaltExport + SurfaceWaterSaltExport;
-            double CatchmentDischarge = Subcatchment.Quickflow + Subcatchment.Slowflow;
+            double CatchmentDischarge = (Subcatchment.Quickflow + Subcatchment.Slowflow)*UnitConversion.SECONDS_IN_ONE_DAY;
             SaltDischarge = Math.Min(CatchmentDischarge*DPR, SaltStore);
             SaltStore = SaltStore - SaltDischarge;
         }

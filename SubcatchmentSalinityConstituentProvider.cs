@@ -35,7 +35,7 @@ namespace CatchmentSalinity
             base.ProcessLumped(parentProvider, now, timeStepInSeconds);
 
             BaseCatchmentModelConstituentOutput outputs = RecordedData.Get<SubcatchmentSalinityConstituentOutput>(c);
-            outputs.LocalSlowflowAdded = SalinityModel.SaltDischarge;
+            outputs.LocalSlowflowAdded = SalinityModel.SaltDischarge / UnitConversion.SECONDS_IN_ONE_DAY;
         }
 
         private void ZeroSurfaceWaterLoad(Constituent c, List<FunctionalUnitConstituentProvider> functionalUnitProviders)
@@ -66,7 +66,7 @@ namespace CatchmentSalinity
 
                 total += relevantOutput.TotalFlowMass;
             }
-            return total;
+            return total * UnitConversion.SECONDS_IN_ONE_DAY;
         }
     }
 }
