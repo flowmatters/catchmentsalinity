@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using PerfectGWLag.Models.GWLag;
 using RiverSystem;
 using RiverSystem.Catchments.Models.CatchmentModels;
-using RiverSystem.Catchments.Models.ContaminantGenerationModels;
 using TIME.Core;
 using TIME.Core.Metadata;
 
@@ -233,6 +227,7 @@ namespace CatchmentSalinity
 
         public override void reset()
         {
+            groundwaterModel.reset();
             base.reset();
             Area = Subcatchment.characteristics.areaInSquareMeters;
             SaltStore = 0;

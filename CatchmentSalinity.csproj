@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,9 @@
   <ItemGroup>
     <Reference Include="RiverSystem">
       <HintPath>References\RiverSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="RiverSystem.Nodes.WaterUser">
+      <HintPath>References\RiverSystem.Nodes.WaterUser.dll</HintPath>
     </Reference>
     <Reference Include="RiverSystem.Plugins.PerfectGWLag">
       <HintPath>References\Plugins\RiverSystem.Plugins.PerfectGWLag.dll</HintPath>
@@ -48,6 +52,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\TIME.dll</HintPath>
     </Reference>
+    <Reference Include="TIME.ScenarioManagement, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\TIME.ScenarioManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="TIME.Tools, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\TIME.Tools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinkSaltStore.cs" />
@@ -55,6 +67,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubcatchmentSalinityConstituentOutput.cs" />
     <Compile Include="SubcatchmentSalinityConstituentProvider.cs" />
+    <Compile Include="TrimNetwork.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\CatchmentSalinity.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

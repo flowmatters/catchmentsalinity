@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CatchmentSalinity" auto-import="false">
+  <subclass name="CatchmentSalinity.SubcatchmentSalinityBalance" lazy="false" discriminator-value="SubcatchmentSalinityBalance" extends="RiverSystem.Catchments.Models.CatchmentModels.AbstractCatchmentModel, RiverSystem">
+    <join table="SubcatchmentSalinityBalan" fetch="select">
+      <key column="SubclassKey" />
+      <property name="ConstituentName" column="ConstituentName" access="property" />
+      <property name="Alpha" column="Alpha" access="property" />
+      <property name="Gamma" column="Gamma" access="property" />
+      <property name="Delta" column="Delta" access="property" />
+      <property name="Storativity" column="Storativity" access="property" />
+      <property name="GroundwaterFlowLength" column="GroundwaterFlowLength" access="property" />
+      <property name="SaturatedHydraulConductivity" column="SaturatedHydraulConductivity" access="property" />
+      <property name="ChangeInElevation" column="ChangeInElevation" access="property" />
+      <property name="AquiferThickness" column="AquiferThickness" access="property" />
+      <property name="P" column="P" access="property" />
+      <property name="ConcentrationGroundwater" column="ConcentrationGroundwater" access="property" />
+      <property name="DPR" column="DPR" access="property" />
+    </join>
+  </subclass>
+</hibernate-mapping>
