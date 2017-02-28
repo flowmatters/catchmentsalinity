@@ -37,16 +37,6 @@ namespace CatchmentSalinity
         [Input]
         public double SurfaceWaterSaltExport { get; set; }
 
-        //[State]
-        //[Aka("Storage term groundwater")]
-        //public double StorageTermGroundwater {
-        //    get { return groundwaterModel.storageTermGroundwater; }
-        //}
-
-        //[State]
-        //[Aka("Storage term lateral flow")]
-        //public double StorageTermLateralflow { get { return groundwaterModel.storageTermLateralflow; } }
-
         public SubcatchmentSalinityBalance()
         {
             groundwaterModel = new GWlag();
@@ -67,20 +57,6 @@ namespace CatchmentSalinity
             get { return groundwaterModel.alpha; }
             set { groundwaterModel.alpha = value; }
         }
-
-        //[
-        //    Parameter,
-        //    Minimum(0.0),
-        //    Maximum(double.MaxValue),
-        //    DecimalPlaces(1),
-        //    Aka("Calibration parameter Beta (laterflow delay)"),
-        //    CalculationUnits(CommonUnits.none)
-        //]
-        //public double Beta
-        //{
-        //    get { return groundwaterModel.beta; }
-        //    set { groundwaterModel.beta = value; }
-        //}
 
         [
             Parameter,
@@ -212,8 +188,6 @@ namespace CatchmentSalinity
             groundwaterModel.runTimeStep(); // All GW Lag Stuff
 
             GroundwaterFlow = groundwaterModel.groundwaterDischargeToRiver; // Simplified Eq 10
-
-            //RunSaltBalance();
         }
 
         public void RunSaltBalance()
